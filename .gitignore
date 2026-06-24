@@ -1,0 +1,25 @@
+# Dossiers et fichiers IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Fichiers de base de données locale (si restes de SQLite)
+db/*.db
+db/*.db-journal
+db/*.db-wal
+db/*.db-shm
+
+# Téléchargements et médias dynamiques (facultatif, à ignorer si vous voulez un dépôt propre)
+uploads/oeuvre_*
+uploads/*.jpg
+uploads/*.png
+uploads/*.webp
+uploads/*.mp4
+
+# Fichiers système
+Thumbs.db
+.DS_Store
