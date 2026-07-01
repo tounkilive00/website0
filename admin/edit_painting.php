@@ -31,28 +31,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Handle new file upload if provided
         if (!empty($_FILES['media_file']['name'])) {
-            $file    = $_FILES['media_file'];
-            $mime    = mime_content_type($file['tmp_name']);
-            $isImage = in_array($mime, $allowedImages);
-            $isVideo = in_array($mime, $allowedVideos);
-
-            if (!$isImage && !$isVideo) {
-                $error = 'Format non supporté.';
-            } elseif ($file['size'] > $maxSize) {
-                $error = 'Fichier trop volumineux (max 50 MB).';
-            } else {
-                $ext      = pathinfo($file['name'], PATHINFO_EXTENSION);
-                $filename = uniqid('oeuvre_', true) . '.' . strtolower($ext);
-                $dest     = '../uploads/' . $filename;
-                if (!is_dir('../uploads')) mkdir('../uploads', 0755, true);
-                if (move_uploaded_file($file['tmp_name'], $dest)) {
-                    // Delete old file if it's in uploads
-                    $oldPath = '../uploads/' . $painting['media_file'];
-                    if (file_exists($oldPath)) unlink($oldPath);
-                    $mediaFile = $filename;
-                    $mediaType = $isVideo ? 'video' : 'image';
+            if ($_FILES['media_file']['error'] !== UPLOAD_ERR_OK) {
+                if ($_FILES['media_file']['error'] === UPLOAD_ERR_INI_SIZE || $_FILES['media_file']['error'] === UPLOAD_ERR_FORM_SIZE) {
+                    $error = 'Fichier trop volumineux. Maximum 50 MB.';
                 } else {
-                    $error = 'Erreur lors de l\'enregistrement du fichier.';
+                    $error = 'Erreur lors du téléchargement du fichier (code ' . $_FILES['media_file']['error'] . ').';
+                }
+            } else {
+                $file    = $_FILES['media_file'];
+                if (empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
+                    $error = 'Fichier téléchargé invalide.';
+                } else {
+                    $mime    = mime_content_type($file['tmp_name']);
+                    $isImage = in_array($mime, $allowedImages);
+                    $isVideo = in_array($mime, $allowedVideos);
+
+                    if (!$isImage && !$isVideo) {
+                        $error = 'Format non supporté.';
+                    } elseif ($file['size'] > $maxSize) {
+                        $error = 'Fichier trop volumineux (max 50 MB).';
+                    } else {
+                        $ext      = pathinfo($file['name'], PATHINFO_EXTENSION);
+                        $filename = uniqid('oeuvre_', true) . '.' . strtolower($ext);
+                        $dest     = '../uploads/' . $filename;
+                        if (!is_dir('../uploads')) mkdir('../uploads', 0755, true);
+                        if (move_uploaded_file($file['tmp_name'], $dest)) {
+                            // Delete old file if it's in uploads
+                            $oldPath = '../uploads/' . $painting['media_file'];
+                            if (file_exists($oldPath)) unlink($oldPath);
+                            $mediaFile = $filename;
+                            $mediaType = $isVideo ? 'video' : 'image';
+                        } else {
+                            $error = 'Erreur lors de l\'enregistrement du fichier.';
+                        }
+                    }
                 }
             }
         }
