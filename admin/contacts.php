@@ -5,7 +5,7 @@ require_once '../db.php';
 
 // Mark a message as read
 if (isset($_GET['read'])) {
-    $stmt = getDB()->prepare("UPDATE contacts SET is_read = TRUE WHERE id = $1");
+    $stmt = getDB()->prepare("UPDATE contacts SET is_read = TRUE WHERE id = ?");
     $stmt->execute([intval($_GET['read'])]);
     header('Location: contacts.php');
     exit;
@@ -13,7 +13,7 @@ if (isset($_GET['read'])) {
 
 // Delete a message
 if (isset($_GET['delete'])) {
-    $stmt = getDB()->prepare("DELETE FROM contacts WHERE id = $1");
+    $stmt = getDB()->prepare("DELETE FROM contacts WHERE id = ?");
     $stmt->execute([intval($_GET['delete'])]);
     header('Location: contacts.php?msg=' . urlencode('Message supprimé.'));
     exit;

@@ -2,7 +2,6 @@
 require_once 'db.php';
 $paintings = getAllPaintings();
 
-// Inclure l'en-tête (HTML Head et Navigation)
 include 'header.php';
 ?>
 
@@ -26,7 +25,6 @@ include 'header.php';
 include 'biography.php';
 ?>
 
-<!-- ══ GALERIE ══ -->
 <section id="galerie">
   <div class="section-header">
     <span class="section-tag">Œuvres Originales</span>

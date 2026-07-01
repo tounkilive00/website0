@@ -43,7 +43,7 @@ function getAllPaintings(): array {
 }
 
 function getPainting(int $id): ?array {
-    $stmt = getDB()->prepare("SELECT * FROM paintings WHERE id = $1");
+    $stmt = getDB()->prepare("SELECT * FROM paintings WHERE id = ?");
     $stmt->execute([$id]);
     $row = $stmt->fetch();
     return $row ?: null;
@@ -52,7 +52,7 @@ function getPainting(int $id): ?array {
 function saveContact(string $name, string $email, string $subject, string $message): bool {
     try {
         $stmt = getDB()->prepare(
-            "INSERT INTO contacts (name, email, subject, message) VALUES ($1, $2, $3, $4)"
+            "INSERT INTO contacts (name, email, subject, message) VALUES (?, ?, ?, ?)"
         );
         return $stmt->execute([$name, $email, $subject, $message]);
     } catch (PDOException $e) {
