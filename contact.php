@@ -1,5 +1,5 @@
 <?php
-// Gérer la soumission du formulaire de contact
+require_once 'db.php';
 $formSuccess = false;
 $formError   = '';
 
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
         // Sauvegarde dans la base PostgreSQL
         $saved = saveContact($name, $email, $subject, $message);
         // Envoi email (optionnel — nécessite un serveur mail configuré)
-        $to      = 'votre@email.com'; // ← remplacez par votre email
+        $to      = 'email.com'; 
         $headers = "From: $email\r\nReply-To: $email\r\nContent-Type: text/plain; charset=UTF-8";
         $body    = "Nom: $name\nEmail: $email\nSujet: $subject\n\nMessage:\n$message";
         @mail($to, "Contact Galerie — $subject", $body, $headers);
@@ -41,21 +41,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_submit'])) {
         <div class="contact-item-icon">✉</div>
         <div class="contact-item-text">
           <strong>Email</strong>
-          <a href="mailto:votre@email.com">votre@email.com</a>
+          <a href="@email.com">votre@email.com</a>
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-item-icon">📍</div>
         <div class="contact-item-text">
           <strong>Localisation</strong>
-          <span>Paris, France</span>
+          <span>Libreville, Gabon</span>
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-item-icon">⏰</div>
         <div class="contact-item-text">
           <strong>Disponibilité</strong>
-          <span>Lun–Ven, 9h–18h</span>
+          <span>Lun–Ven, 10h–20h</span>
         </div>
       </div>
 
