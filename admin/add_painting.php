@@ -9,7 +9,7 @@ $success = '';
 // ── ALLOWED TYPES ──
 $allowedImages = ['image/jpeg','image/png','image/webp','image/gif'];
 $allowedVideos = ['video/mp4','video/webm','video/ogg'];
-$maxSize = 50 * 1024 * 1024; // 50 MB
+$maxSize = 100 * 1024 * 1024; // 50 MB
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title       = trim($_POST['title'] ?? '');

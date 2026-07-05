@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// If already logged in, go to dashboard
+
 if (!empty($_SESSION['admin_logged_in'])) {
     header('Location: dashboard.php');
     exit;
@@ -12,7 +12,7 @@ require_once '../db.php';
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
-    // Default password is "admin1234" — change ADMIN_PASSWORD_HASH in db.php
+    
     if (password_verify($password, ADMIN_PASSWORD_HASH)) {
         $_SESSION['admin_logged_in'] = true;
         header('Location: dashboard.php');

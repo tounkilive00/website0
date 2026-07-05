@@ -35,10 +35,6 @@ CREATE TABLE IF NOT EXISTS admin_users (
     created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
--- ── COMPTE ADMIN PAR DÉFAUT ──────────────────────────────────
--- Mot de passe par défaut : admin1234
--- Remplacez le hash ci-dessous par celui généré avec PHP :
---   echo password_hash('votre_mdp', PASSWORD_DEFAULT);
 INSERT INTO
     admin_users (username, password_hash)
 VALUES (

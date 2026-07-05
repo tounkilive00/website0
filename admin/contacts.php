@@ -3,7 +3,6 @@ session_start();
 if (empty($_SESSION['admin_logged_in'])) { header('Location: login.php'); exit; }
 require_once '../db.php';
 
-// Mark a message as read
 if (isset($_GET['read'])) {
     $stmt = getDB()->prepare("UPDATE contacts SET is_read = TRUE WHERE id = ?");
     $stmt->execute([intval($_GET['read'])]);
@@ -11,7 +10,7 @@ if (isset($_GET['read'])) {
     exit;
 }
 
-// Delete a message
+
 if (isset($_GET['delete'])) {
     $stmt = getDB()->prepare("DELETE FROM contacts WHERE id = ?");
     $stmt->execute([intval($_GET['delete'])]);

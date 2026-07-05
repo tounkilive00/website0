@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Galerie d'Art — Peintures Originales à Vendre</title>
-  <meta name="description" content="Découvrez les peintures originales de [Votre Nom]. Huile, acrylique, œuvres uniques disponibles à l'achat. Livraison internationale.">
+  <meta name="description" content="Découvrez les peintures originales de [Reteno Tounkara bintou Mamaka]. Huile, acrylique, œuvres uniques disponibles à l'achat. Livraison internationale.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>

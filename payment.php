@@ -21,13 +21,9 @@
       <p class="payment-name">Virement Bancaire</p>
       <p class="payment-desc">Transfert bancaire direct (IBAN/SWIFT). Sur devis.</p>
     </div>
-    <div class="payment-card">
-      <div class="payment-icon">₿</div>
-      <p class="payment-name">Crypto</p>
-      <p class="payment-desc">Bitcoin, USDT acceptés. Contactez-nous pour les détails.</p>
-    </div>
+    
   </div>
   <p style="text-align:center;margin-top:2rem;color:var(--text-muted);font-size:0.82rem;">
-    Toutes les œuvres sont expédiées avec emballage professionnel et assurance. Livraison mondiale disponible.
+    Toutes les œuvres sont expédiées avec emballage professionnel et assurance. Livraison  disponible.
   </p>
 </section>
